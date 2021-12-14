@@ -1,8 +1,8 @@
 import React from 'react'
-import './App.css'
+import { Wrapper } from './App.styled'
 
 function App() {
-  return <div className="App">Empty</div>
+  return <Wrapper className="App">Empty</Wrapper>
 }
 
 export default App
