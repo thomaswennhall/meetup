@@ -8,8 +8,7 @@ const colors = {
   green: '#2A9D8F',
   yellow: '#E9C46A',
   orange: '#F4A261',
-  red: '#E76F51',
-  gray: 'grey'
+  red: '#E76F51'
 }
 
 const theme = { colors }
