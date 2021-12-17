@@ -1,10 +1,4 @@
-export interface IEvent {
-  id: string
-  title: string
-  time: Date
-  place: string
-  description: string
-}
+import { IEvent } from '.'
 
 const mockEvents: IEvent[] = [
   {

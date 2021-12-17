@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { IEvent } from '../../Recoil/mockData'
+import { IEvent } from '../../models'
 import { H2, H3, P } from '../../themes/typography'
 
 interface Props {
