@@ -1,5 +1,4 @@
 import { shallow } from 'enzyme'
-import { render } from '@testing-library/react'
 import EventCard from '.'
 
 describe('EventCard component', () => {
@@ -20,14 +19,26 @@ describe('EventCard component', () => {
     it('should render correct title for event', () => {
       const wrapper = shallow(<EventCard event={event} />)
       const title = wrapper.find('[data-test="event-title"]')
+
       expect(title.text()).toBe(event.title)
     })
     it('should render correct time for event', () => {
       const wrapper = shallow(<EventCard event={event} />)
-      const title = wrapper.find('[data-test="event-time"]')
-      console.log(title.text())
+      const time = wrapper.find('[data-test="event-time"]')
 
-      expect(title.text()).toBe(event.time.toString())
+      expect(time.text()).toBe(event.time.toLocaleDateString('SE'))
+    })
+    it('should render correct place for event', () => {
+      const wrapper = shallow(<EventCard event={event} />)
+      const place = wrapper.find('[data-test="event-place"]')
+
+      expect(place.text()).toBe(event.place)
+    })
+    it('should render a shortened version of description for event', () => {
+      const wrapper = shallow(<EventCard event={event} />)
+      const desc = wrapper.find('[data-test="event-description"]')
+
+      expect(desc.text().length).toBe(50)
     })
   })
 })

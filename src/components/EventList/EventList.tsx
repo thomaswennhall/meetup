@@ -2,6 +2,8 @@ import React, { FunctionComponent, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import eventsState from '../../Recoil/atoms/events'
 
+import EventCard from '../EventCard'
+
 const EventList: FunctionComponent = () => {
   const [events, setEvents] = useRecoilState(eventsState)
 
@@ -16,7 +18,7 @@ const EventList: FunctionComponent = () => {
 
   return (
     <section>
-      <ul>{events && events.map(event => <li key={event.id}>{event.title}</li>)}</ul>
+      {events.length > 0 && events.map(event => <EventCard key={event.id} event={event} />)}
     </section>
   )
 }

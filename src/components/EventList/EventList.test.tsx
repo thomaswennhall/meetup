@@ -1,6 +1,8 @@
 import { shallow, mount } from 'enzyme'
-import EventList from './'
 import { RecoilRoot } from 'recoil'
+
+import mockData from '../../Recoil/mockData'
+import EventList from './'
 
 describe('EventList component', () => {
   it('should render without errors', () => {
@@ -10,15 +12,15 @@ describe('EventList component', () => {
       </RecoilRoot>
     )
   })
-  describe('whitebox tests', () => {
+  describe('Blackbox tests', () => {
     it('should render a list of events', () => {
       const wrapper = mount(
         <RecoilRoot>
           <EventList />
         </RecoilRoot>
       )
-      const li = wrapper.find('li')
-      expect(li.length).toBe(1)
+      const events = wrapper.find('[data-test="event-card"]')
+      expect(events.length).toBe(mockData.length)
     })
   })
 })
