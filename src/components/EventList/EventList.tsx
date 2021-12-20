@@ -17,7 +17,7 @@ const EventList: FunctionComponent = () => {
   }, [])
 
   return (
-    <section>
+    <section data-test="event-list">
       {events.length > 0 && events.map(event => <EventCard key={event.id} event={event} />)}
     </section>
   )

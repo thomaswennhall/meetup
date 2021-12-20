@@ -1,7 +1,8 @@
 export interface IEvent {
   id: string
   title: string
-  time: Date
+  date: string
+  time: string
   place: string
   description: string
 }

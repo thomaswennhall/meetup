@@ -5,7 +5,8 @@ describe('EventCard component', () => {
   const event = {
     id: 'oijf+94jt038f',
     title: 'Julafton',
-    time: new Date('2021-12-24'),
+    date: '2021-12-24',
+    time: '15:00',
     place: 'online',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
@@ -22,11 +23,11 @@ describe('EventCard component', () => {
 
       expect(title.text()).toBe(event.title)
     })
-    it('should render correct time for event', () => {
+    it('should render correct date for event', () => {
       const wrapper = shallow(<EventCard event={event} />)
-      const time = wrapper.find('[data-test="event-time"]')
+      const date = wrapper.find('[data-test="event-date"]')
 
-      expect(time.text()).toBe(event.time.toLocaleDateString('SE'))
+      expect(date.text()).toBe(`${event.date} ${event.time}`)
     })
     it('should render correct place for event', () => {
       const wrapper = shallow(<EventCard event={event} />)
