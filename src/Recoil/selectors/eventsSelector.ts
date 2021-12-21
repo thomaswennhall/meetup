@@ -7,10 +7,12 @@ export default selector({
   get: ({ get }) => {
     const searchString = get(searchStringState)
 
-    if (searchString.length > 2) {
-      return get(eventsState).filter(event =>
-        event.title.toLowerCase().includes(searchString.toLowerCase())
-      )
+    const filteredState = get(eventsState).filter(event =>
+      event.title.toLowerCase().includes(searchString.toLowerCase())
+    )
+
+    if (searchString.length > 2 && filteredState.length) {
+      return filteredState
     } else {
       return get(eventsState)
     }

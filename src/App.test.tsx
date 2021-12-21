@@ -94,5 +94,28 @@ describe('App', () => {
 
       expect(eventCards.length).toBe(mockEvents.length)
     })
+    it('should NOT filter event list if search input renders no matches', async () => {
+      const onChange = jest.fn()
+
+      render(
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <RecoilObserver node={searchStringState} onChange={onChange} />
+            <App />
+          </RecoilRoot>
+        </ThemeProvider>
+      )
+
+      let eventCards = await screen.findAllByTestId('event-card')
+      expect(eventCards.length).toBe(mockEvents.length)
+
+      const testInput = 'ho ho ho'
+      const input = await screen.findByTestId('search-input')
+      fireEvent.change(input, { target: { value: testInput } })
+
+      eventCards = await screen.findAllByTestId('event-card')
+
+      expect(eventCards.length).toBe(mockEvents.length)
+    })
   })
 })
