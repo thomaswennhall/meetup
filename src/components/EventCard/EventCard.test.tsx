@@ -39,7 +39,7 @@ describe('EventCard component', () => {
       const wrapper = shallow(<EventCard event={event} />)
       const desc = wrapper.find('[data-test="event-description"]')
 
-      expect(desc.text().length).toBe(50)
+      expect(desc.text().length).toBe(93)
     })
   })
 })
