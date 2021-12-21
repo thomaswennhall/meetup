@@ -8,7 +8,7 @@ interface Props {
 
 const EventCard: FunctionComponent<Props> = ({ event }) => {
   return (
-    <article data-test="event-card">
+    <article data-test="event-card" data-testid="event-card">
       <H2 data-test="event-title">{event.title}</H2>
       <H3 data-test="event-date">
         {event.date} {event.time}

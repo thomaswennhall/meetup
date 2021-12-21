@@ -1,11 +1,13 @@
 import React, { FunctionComponent, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import eventsState from '../../Recoil/atoms/events'
+import eventsSelector from '../../Recoil/selectors/eventsSelector'
 
 import EventCard from '../EventCard'
 
 const EventList: FunctionComponent = () => {
-  const [events, setEvents] = useRecoilState(eventsState)
+  const [events, setEvents] = useRecoilState(eventsSelector)
+
   /* 
   useEffect(() => {
     const eventsInLocalStore = localStorage.getItem('events')

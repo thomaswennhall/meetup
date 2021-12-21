@@ -1,9 +1,11 @@
-import { render } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { mount } from 'enzyme'
 import { RecoilRoot } from 'recoil'
 import mockEvents from './models/mockData'
 
 import App from './App'
+import { RecoilObserver } from './Recoil/observers'
+import searchStringState from './Recoil/atoms/searchString'
 
 describe('App', () => {
   it('should render without errors', () => {
@@ -37,22 +39,28 @@ describe('App', () => {
       expect(header.exists()).toBeTruthy()
     })
 
-    it('should render event list with title matching search input on submit', () => {
-      const wrapper = mount(
+    it('should render event list with title matching search input on submit', async () => {
+      const onChange = jest.fn()
+
+      render(
         <RecoilRoot>
+          <RecoilObserver node={searchStringState} onChange={onChange} />
           <App />
         </RecoilRoot>
       )
-      const eventCards = wrapper.find('[data-test="event-card"]')
+
+      let eventCards = await screen.findAllByTestId('event-card')
       expect(eventCards.length).toBe(mockEvents.length)
 
       const testInput = mockEvents[0].title.toLowerCase()
 
-      const input = wrapper.find('[data-test="search-input"]')
-      input.simulate('change', { target: { value: testInput } })
+      const input = await screen.findByTestId('search-input')
+      fireEvent.change(input, { target: { value: testInput } })
 
-      const button = wrapper.find('[data-test="search-button"]')
-      button.simulate('click')
+      const button = await screen.findByTestId('search-button')
+      fireEvent.click(button)
+
+      eventCards = await screen.findAllByTestId('event-card')
 
       expect(eventCards.length).toBe(1)
     })
