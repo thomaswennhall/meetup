@@ -19,12 +19,13 @@ const SearchBar: FunctionComponent = () => {
     <form onSubmit={e => submitSearch(e)}>
       <input
         data-test="search-input"
+        data-testid="search-input"
         type="text"
         value={searchInput}
         onChange={e => changeHandler(e)}
       />
 
-      <button type="submit" data-test="search-button">
+      <button type="submit" data-test="search-button" data-testid="search-button">
         search
       </button>
     </form>

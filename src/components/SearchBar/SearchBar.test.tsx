@@ -1,7 +1,9 @@
 import { mount, ReactWrapper, shallow } from 'enzyme'
+import { fireEvent, render, screen } from '@testing-library/react'
+
 import { RecoilRoot } from 'recoil'
 import searchStringState from '../../Recoil/atoms/searchString'
-import { SearchStringObserver } from '../../Recoil/observers'
+import { RecoilObserver } from '../../Recoil/observers'
 
 import SearchBar from '.'
 
@@ -51,21 +53,22 @@ describe('SearchBar component', () => {
       expect(input.render().val()).toBe(testInput)
     })
 
-    it('should change searchString in RecoilState on submit', () => {
+    it('should change searchString in RecoilState on submit', async () => {
       const onChange = jest.fn()
-      wrapper = mount(
+
+      render(
         <RecoilRoot>
-          <SearchStringObserver node={searchStringState} onChange={onChange} />
+          <RecoilObserver node={searchStringState} onChange={onChange} />
           <SearchBar />
         </RecoilRoot>
       )
 
       const testInput = 'hello'
-      const input = wrapper.find('[data-test="search-input"]')
-      input.simulate('change', { target: { value: testInput } })
+      const input = await screen.findByTestId('search-input')
+      fireEvent.change(input, { target: { value: testInput } })
 
-      const button = wrapper.find('[data-test="search-button"]')
-      button.simulate('click')
+      const button = await screen.findByTestId('search-button')
+      fireEvent.click(button)
 
       expect(onChange).toHaveBeenCalledTimes(2)
       expect(onChange).toHaveBeenCalledWith('') // Initial state on render.
