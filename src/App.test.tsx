@@ -57,12 +57,30 @@ describe('App', () => {
       const input = await screen.findByTestId('search-input')
       fireEvent.change(input, { target: { value: testInput } })
 
-      const button = await screen.findByTestId('search-button')
-      fireEvent.click(button)
-
       eventCards = await screen.findAllByTestId('event-card')
 
       expect(eventCards.length).toBe(1)
+    })
+    it('should NOT filter event list if search input is less than 3 characters long', async () => {
+      const onChange = jest.fn()
+
+      render(
+        <RecoilRoot>
+          <RecoilObserver node={searchStringState} onChange={onChange} />
+          <App />
+        </RecoilRoot>
+      )
+
+      let eventCards = await screen.findAllByTestId('event-card')
+      expect(eventCards.length).toBe(mockEvents.length)
+
+      const testInput = 'ho'
+      const input = await screen.findByTestId('search-input')
+      fireEvent.change(input, { target: { value: testInput } })
+
+      eventCards = await screen.findAllByTestId('event-card')
+
+      expect(eventCards.length).toBe(mockEvents.length)
     })
   })
 })

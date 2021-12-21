@@ -4,31 +4,19 @@ import searchStringState from '../../Recoil/atoms/searchString'
 
 const SearchBar: FunctionComponent = () => {
   const [searchString, setSearchString] = useRecoilState(searchStringState)
-  const [searchInput, setSearchInput] = useState<string>('')
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(e.target.value)
-  }
-  const submitSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setSearchString(searchInput)
-    setSearchInput('')
+    setSearchString(e.target.value)
   }
 
   return (
-    <form data-test="search-bar" onSubmit={e => submitSearch(e)}>
-      <input
-        data-test="search-input"
-        data-testid="search-input"
-        type="text"
-        value={searchInput}
-        onChange={e => changeHandler(e)}
-      />
-
-      <button type="submit" data-test="search-button" data-testid="search-button">
-        search
-      </button>
-    </form>
+    <input
+      data-test="search-input"
+      data-testid="search-input"
+      type="text"
+      value={searchString}
+      onChange={e => changeHandler(e)}
+    />
   )
 }
 

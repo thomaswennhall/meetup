@@ -20,7 +20,7 @@ describe('Header component', () => {
     })
 
     it('should render a search bar', () => {
-      const searchBar = wrapper.find('[data-test="search-bar"]')
+      const searchBar = wrapper.find('[data-test="search-input"]')
       expect(searchBar.exists()).toBeTruthy()
     })
 

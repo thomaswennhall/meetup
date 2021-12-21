@@ -15,17 +15,6 @@ describe('SearchBar component', () => {
       </RecoilRoot>
     )
   })
-  describe('Blackbox tests', () => {
-    it('should render a button', () => {
-      const wrapper = mount(
-        <RecoilRoot>
-          <SearchBar />
-        </RecoilRoot>
-      )
-      const button = wrapper.find('[data-test="search-button"]')
-      expect(button.exists()).toBe(true)
-    })
-  })
 
   describe('Whitebox tests', () => {
     let wrapper: ReactWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>
@@ -53,7 +42,7 @@ describe('SearchBar component', () => {
       expect(input.render().val()).toBe(testInput)
     })
 
-    it('should change searchString in RecoilState on submit', async () => {
+    it('should change searchString in RecoilState on change', async () => {
       const onChange = jest.fn()
 
       render(
@@ -66,9 +55,6 @@ describe('SearchBar component', () => {
       const testInput = 'hello'
       const input = await screen.findByTestId('search-input')
       fireEvent.change(input, { target: { value: testInput } })
-
-      const button = await screen.findByTestId('search-button')
-      fireEvent.click(button)
 
       expect(onChange).toHaveBeenCalledTimes(2)
       expect(onChange).toHaveBeenCalledWith('') // Initial state on render.
