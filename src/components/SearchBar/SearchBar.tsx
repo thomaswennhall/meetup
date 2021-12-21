@@ -1,12 +1,17 @@
 import React, { FunctionComponent, useState } from 'react'
+import { useRecoilState } from 'recoil'
+import searchStringState from '../../Recoil/atoms/searchString'
 
 const SearchBar: FunctionComponent = () => {
+  const [searchString, setSearchString] = useRecoilState(searchStringState)
   const [searchInput, setSearchInput] = useState<string>('')
+
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value)
   }
   const submitSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setSearchString(searchInput)
     setSearchInput('')
   }
 
@@ -19,7 +24,9 @@ const SearchBar: FunctionComponent = () => {
         onChange={e => changeHandler(e)}
       />
 
-      <button data-test="search-button">search</button>
+      <button type="submit" data-test="search-button">
+        search
+      </button>
     </form>
   )
 }

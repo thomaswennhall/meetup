@@ -6,7 +6,7 @@ import EventCard from '../EventCard'
 
 const EventList: FunctionComponent = () => {
   const [events, setEvents] = useRecoilState(eventsState)
-
+  /* 
   useEffect(() => {
     const eventsInLocalStore = localStorage.getItem('events')
     if (eventsInLocalStore) {
@@ -15,7 +15,7 @@ const EventList: FunctionComponent = () => {
       localStorage.setItem('events', JSON.stringify(events))
     }
   }, [])
-
+ */
   return (
     <section data-test="event-list">
       {events.length > 0 && events.map(event => <EventCard key={event.id} event={event} />)}
