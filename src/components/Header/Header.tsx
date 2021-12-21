@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from '../../assets/logo.svg'
 
 const Header: FunctionComponent = () => {
   return (
-    <header>
+    <header data-test="header">
       <Logo data-test="header-logo" />
       <SearchBar />
     </header>

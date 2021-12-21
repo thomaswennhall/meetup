@@ -6,12 +6,14 @@ import theme from './themes'
 import * as S from './themes/typography'
 
 import EventList from './components/EventList'
+import Header from './components/Header'
 
 function App() {
   return (
     <RecoilRoot>
       <ThemeProvider theme={theme}>
         <Wrapper className="App">
+          <Header />
           <S.H1>Meetups</S.H1>
           <EventList />
         </Wrapper>
