@@ -2,6 +2,8 @@ import React, { FunctionComponent, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import searchStringState from '../../Recoil/atoms/searchString'
 
+import { StyledInput } from './SearchBar.styled'
+
 const SearchBar: FunctionComponent = () => {
   const [searchString, setSearchString] = useRecoilState(searchStringState)
 
@@ -10,10 +12,11 @@ const SearchBar: FunctionComponent = () => {
   }
 
   return (
-    <input
+    <StyledInput
       data-test="search-input"
       data-testid="search-input"
       type="text"
+      placeholder="search..."
       value={searchString}
       onChange={e => changeHandler(e)}
     />

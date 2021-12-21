@@ -14,7 +14,6 @@ function App() {
       <ThemeProvider theme={theme}>
         <Wrapper className="App">
           <Header />
-          <S.H1>Meetups</S.H1>
           <EventList />
         </Wrapper>
       </ThemeProvider>

@@ -6,13 +6,17 @@ import searchStringState from '../../Recoil/atoms/searchString'
 import { RecoilObserver } from '../../Recoil/observers'
 
 import SearchBar from '.'
+import { ThemeProvider } from 'styled-components'
+import theme from '../../themes'
 
 describe('SearchBar component', () => {
   it('should render without errors', () => {
     shallow(
-      <RecoilRoot>
-        <SearchBar />
-      </RecoilRoot>
+      <ThemeProvider theme={theme}>
+        <RecoilRoot>
+          <SearchBar />
+        </RecoilRoot>
+      </ThemeProvider>
     )
   })
 
@@ -20,14 +24,16 @@ describe('SearchBar component', () => {
     let wrapper: ReactWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>
     beforeEach(() => {
       wrapper = mount(
-        <RecoilRoot>
-          <SearchBar />
-        </RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <SearchBar />
+          </RecoilRoot>
+        </ThemeProvider>
       )
     })
 
     it('should render empty input field initially', () => {
-      const input = wrapper.find('[data-test="search-input"]')
+      const input = wrapper.find('[data-test="search-input"]').first()
       expect(input.exists()).toBe(true)
       expect(input.render().val()).toBe('')
     })
@@ -35,7 +41,7 @@ describe('SearchBar component', () => {
     it('should render text in input field on change', () => {
       const testInput = 'hello'
 
-      const input = wrapper.find('[data-test="search-input"]')
+      const input = wrapper.find('[data-test="search-input"]').first()
       expect(input.exists()).toBe(true)
 
       input.simulate('change', { target: { value: testInput } })
@@ -46,10 +52,12 @@ describe('SearchBar component', () => {
       const onChange = jest.fn()
 
       render(
-        <RecoilRoot>
-          <RecoilObserver node={searchStringState} onChange={onChange} />
-          <SearchBar />
-        </RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <RecoilObserver node={searchStringState} onChange={onChange} />
+            <SearchBar />
+          </RecoilRoot>
+        </ThemeProvider>
       )
 
       const testInput = 'hello'

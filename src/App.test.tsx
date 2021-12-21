@@ -6,33 +6,41 @@ import mockEvents from './models/mockData'
 import App from './App'
 import { RecoilObserver } from './Recoil/observers'
 import searchStringState from './Recoil/atoms/searchString'
+import { ThemeProvider } from 'styled-components'
+import theme from './themes'
 
 describe('App', () => {
   it('should render without errors', () => {
     render(
-      <RecoilRoot>
-        <App />
-      </RecoilRoot>
+      <ThemeProvider theme={theme}>
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
+      </ThemeProvider>
     )
   })
 
   describe('Integration tests', () => {
     it('should render event list component', () => {
       const wrapper = mount(
-        <RecoilRoot>
-          <App />
-        </RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <App />
+          </RecoilRoot>
+        </ThemeProvider>
       )
 
       const eventList = wrapper.find('[data-test="event-list"]')
-      expect(eventList.length).toBe(1)
+      expect(eventList.exists()).toBeTruthy()
     })
 
     it('should render Header component', () => {
       const wrapper = mount(
-        <RecoilRoot>
-          <App />
-        </RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <App />
+          </RecoilRoot>
+        </ThemeProvider>
       )
 
       const header = wrapper.find('[data-test="header"]')
@@ -43,10 +51,12 @@ describe('App', () => {
       const onChange = jest.fn()
 
       render(
-        <RecoilRoot>
-          <RecoilObserver node={searchStringState} onChange={onChange} />
-          <App />
-        </RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <RecoilObserver node={searchStringState} onChange={onChange} />
+            <App />
+          </RecoilRoot>
+        </ThemeProvider>
       )
 
       let eventCards = await screen.findAllByTestId('event-card')
@@ -65,10 +75,12 @@ describe('App', () => {
       const onChange = jest.fn()
 
       render(
-        <RecoilRoot>
-          <RecoilObserver node={searchStringState} onChange={onChange} />
-          <App />
-        </RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <RecoilObserver node={searchStringState} onChange={onChange} />
+            <App />
+          </RecoilRoot>
+        </ThemeProvider>
       )
 
       let eventCards = await screen.findAllByTestId('event-card')

@@ -1,21 +1,28 @@
 import { shallow, mount, ReactWrapper } from 'enzyme'
 import { RecoilRoot } from 'recoil'
+import { ThemeProvider } from 'styled-components'
 
 import Header from '.'
-import SearchBar from '../SearchBar'
+import theme from '../../themes'
 
 describe('Header component', () => {
   it('should render without errors', () => {
-    shallow(<Header />)
+    shallow(
+      <ThemeProvider theme={theme}>
+        <Header />
+      </ThemeProvider>
+    )
   })
 
   describe('Whitebox tests', () => {
     let wrapper: ReactWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>
     beforeEach(() => {
       wrapper = mount(
-        <RecoilRoot>
-          <Header />
-        </RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <Header />
+          </RecoilRoot>
+        </ThemeProvider>
       )
     })
 

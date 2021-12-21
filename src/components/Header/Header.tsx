@@ -1,13 +1,16 @@
 import React, { FunctionComponent } from 'react'
-import SearchBar from '../SearchBar'
+
+import * as S from './Header.styled'
 import { ReactComponent as Logo } from '../../assets/logo.svg'
+
+import SearchBar from '../SearchBar'
 
 const Header: FunctionComponent = () => {
   return (
-    <header data-test="header">
+    <S.Wrapper data-test="header">
       <Logo data-test="header-logo" />
       <SearchBar />
-    </header>
+    </S.Wrapper>
   )
 }
 

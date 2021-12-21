@@ -8,10 +8,12 @@ const baseHeading = css`
 
 export const H1 = styled.h1`
   ${baseHeading}
+  font-size: 1.8rem;
 `
 
 export const H2 = styled.h2`
   ${baseHeading}
+  font-size: 1.4rem;
 `
 
 export const H3 = styled.h3`
