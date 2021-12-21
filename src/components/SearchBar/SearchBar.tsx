@@ -16,7 +16,7 @@ const SearchBar: FunctionComponent = () => {
   }
 
   return (
-    <form onSubmit={e => submitSearch(e)}>
+    <form data-test="search-bar" onSubmit={e => submitSearch(e)}>
       <input
         data-test="search-input"
         data-testid="search-input"
