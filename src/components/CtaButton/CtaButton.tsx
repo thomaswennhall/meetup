@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
-
+import { H3 } from '../../themes/typography'
+import { Button } from './CtaButton.styled'
 interface IProps {
   text: string
   clickHandler: () => void
@@ -7,9 +8,9 @@ interface IProps {
 
 const CtaButton: FunctionComponent<IProps> = ({ text, clickHandler }) => {
   return (
-    <button data-testid="cta-button" onClick={clickHandler}>
-      {text}
-    </button>
+    <Button data-testid="cta-button" onClick={clickHandler}>
+      <H3>{text}</H3>
+    </Button>
   )
 }
 

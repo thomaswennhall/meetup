@@ -47,6 +47,19 @@ describe('App', () => {
       expect(header.exists()).toBeTruthy()
     })
 
+    it('should render Footer component', () => {
+      const wrapper = mount(
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <App />
+          </RecoilRoot>
+        </ThemeProvider>
+      )
+
+      const footer = wrapper.find('[data-testid="footer"]')
+      expect(footer.exists()).toBeTruthy()
+    })
+
     it('should render event list with title matching search input on submit', async () => {
       const onChange = jest.fn()
 

@@ -7,15 +7,17 @@ import * as S from './themes/typography'
 
 import EventList from './components/EventList'
 import Header from './components/Header'
+import Footer from './components/Footer'
 
 function App() {
   return (
     <RecoilRoot>
       <ThemeProvider theme={theme}>
+        <Header />
         <Wrapper className="App">
-          <Header />
           <EventList />
         </Wrapper>
+        <Footer />
       </ThemeProvider>
     </RecoilRoot>
   )
