@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 import { useRecoilState } from 'recoil'
 import searchStringState from '../../Recoil/atoms/searchString'
 

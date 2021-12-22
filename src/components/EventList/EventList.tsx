@@ -8,7 +8,7 @@ import { H1 } from '../../themes/typography'
 import EventCard from '../EventCard'
 
 const EventList: FunctionComponent = () => {
-  const [events, setEvents] = useRecoilState(eventsSelector)
+  const [events] = useRecoilState(eventsSelector)
 
   return (
     <S.Wrapper data-test="event-list">
