@@ -1,4 +1,5 @@
-import { shallow } from 'enzyme'
+import { render, screen, fireEvent } from '@testing-library/react'
+import { mount, shallow } from 'enzyme'
 import EventCard from '.'
 
 describe('EventCard component', () => {
@@ -48,6 +49,27 @@ describe('EventCard component', () => {
       const attendees = wrapper.find('[data-test="event-attendees"]')
 
       expect(attendees.text()).toContain(`${event.attendees}/${event.maxAttendees}`)
+    })
+    it('should have a modal component', () => {
+      const wrapper = shallow(<EventCard event={event} />)
+      const modal = wrapper.find('[data-testid="event-card-modal"]')
+
+      expect(modal.exists()).toBeTruthy()
+    })
+    it('should not show event modal initially', () => {
+      const wrapper = mount(<EventCard event={event} />)
+      const eventModal = wrapper.find('[data-testid="event-modal"]')
+
+      expect(eventModal.exists()).toBeFalsy()
+    })
+    it('should show event modal on click', async () => {
+      render(<EventCard event={event} />)
+      const card = await screen.findByTestId('event-card')
+      fireEvent.click(card)
+
+      const eventModal = screen.findByTestId('event-modal')
+
+      expect(eventModal).toBeDefined()
     })
   })
 })
