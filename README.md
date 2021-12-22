@@ -1,46 +1,19 @@
-# Getting Started with Create React App
+# User Stories
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Besökare
 
-## Available Scripts
+- Som besökare vill jag se de närmast kommande meetups för att jag är spontan av mig.
+- Som besökare vill jag kunna se hur många som har anmält sig till en meetup för att jag vill veta hur populärt det är.
+- Som besökare vill jag snabbt kunna se vilka meetups som är online för att jag inte har tid att ta mig till andra platser.
+- Som besökare vill jag se vart någonstans en meetup ska hålla rum för att kunna hitta rätt.
+- Som besökare vill jag se gamla meetups för att se vilka meetups som kan tänkas ske i framtiden.
+- Som besökare vill jag att gamla meetups ska vara tydligt markerade för att slippa försöka anmäla mig till dem.
+- Som besökare vill jag se en rating på gamla meetups för att se vad folk tyckte om dessa.
+- Som besökare vill jag kunna ratea en meetup som jag varit på för att hjälpa andra besökare hitta rätt meetup i framtiden.
 
-In the project directory, you can run:
+## Arrangör
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Som arrangör vill jag kunna skapa en meetup för att engagera folk inom det jag tycker är kul
+- Som arrangör vill jag kunna begränsa antalet platser på min meetup för att jag inte har plats för så många personer
+- Som arrangör vill jag kunna bestämma en tid och plats för min meetup så att folk kan planera
+- Som arrangör vill jag kunna lägga till en beskrivning på min meetup för att folk ska förstå vad den handlar om
