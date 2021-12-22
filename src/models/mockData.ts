@@ -2,6 +2,17 @@ import { IEvent } from '.'
 
 const mockEvents: IEvent[] = [
   {
+    id: 'oijf+mfkmek',
+    title: 'NyårsAfton',
+    date: new Date('2021-12-31'),
+    time: '18:00',
+    place: 'Stockholm',
+    attendees: 15,
+    maxAttendees: 20,
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
+  },
+  {
     id: 'oijf+94jt038f',
     title: 'Julafton',
     date: new Date('2021-12-24'),
@@ -9,6 +20,10 @@ const mockEvents: IEvent[] = [
     place: 'online',
     attendees: 10,
     maxAttendees: 12,
+    comments: [
+      { id: '1', text: 'Impsum ha?' },
+      { id: '2', text: 'Gravida rhoncus mannen!' }
+    ],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
   },
@@ -20,17 +35,6 @@ const mockEvents: IEvent[] = [
     place: 'online',
     attendees: 10,
     maxAttendees: 15,
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
-  },
-  {
-    id: 'oijf+mfkmek',
-    title: 'NyårsAfton',
-    date: new Date('2021-12-31'),
-    time: '18:00',
-    place: 'Stockholm',
-    attendees: 15,
-    maxAttendees: 20,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
   },

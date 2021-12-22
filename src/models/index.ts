@@ -7,4 +7,10 @@ export interface IEvent {
   description: string
   maxAttendees: number
   attendees: number
+  comments?: IComment[]
+}
+
+interface IComment {
+  id: string
+  text: string
 }

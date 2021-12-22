@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect } from 'react'
 import { RecoilState, useRecoilValue } from 'recoil'
 
 interface IProps {
-  node: RecoilState<string>
+  node: RecoilState<any>
   onChange: (value: any) => void
 }
 

@@ -4,11 +4,12 @@ import { Button } from './CtaButton.styled'
 interface IProps {
   text: string
   clickHandler: () => void
+  testId?: string
 }
 
-const CtaButton: FunctionComponent<IProps> = ({ text, clickHandler }) => {
+const CtaButton: FunctionComponent<IProps> = ({ text, clickHandler, testId = '' }) => {
   return (
-    <Button data-testid="cta-button" onClick={clickHandler}>
+    <Button data-test="cta-button" data-testid={testId} onClick={clickHandler}>
       <H3>{text}</H3>
     </Button>
   )

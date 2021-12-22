@@ -13,14 +13,14 @@ describe('CtaButton component', () => {
   describe('Whitebox', () => {
     it('should render text from prop', () => {
       const wrapper = shallow(<CtaButton {...props} />)
-      const button = wrapper.find('[data-testid="cta-button"]')
+      const button = wrapper.find('[data-test="cta-button"]')
       expect(button.text()).toBe(props.text)
     })
     it('should call clickHandler from props on click', () => {
       const mockHandler = jest.fn()
 
       const wrapper = shallow(<CtaButton text="text" clickHandler={mockHandler} />)
-      const button = wrapper.find('[data-testid="cta-button"]')
+      const button = wrapper.find('[data-test="cta-button"]')
       button.simulate('click')
       expect(mockHandler).toHaveBeenCalled()
     })

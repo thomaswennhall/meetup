@@ -21,6 +21,6 @@ export default selector({
   set: () => {}
 })
 
-const sortByDate = (events: IEvent[]) => {
-  return [...events].sort((a, b) => a.date.getSeconds() - b.date.getSeconds())
+function sortByDate(events: IEvent[]) {
+  return [...events].sort((a, b) => +a.date - +b.date)
 }

@@ -13,7 +13,7 @@ describe('Footer component', () => {
         <Footer />
       </ThemeProvider>
     )
-    const button = wrapper.find('[data-testid="cta-button"]')
+    const button = wrapper.find('[data-test="cta-button"]')
     expect(button.exists()).toBeTruthy()
   })
 })
