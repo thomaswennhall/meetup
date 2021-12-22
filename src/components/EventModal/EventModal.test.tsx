@@ -56,26 +56,9 @@ describe('EventModal component', () => {
     })
 
     it('should have a comments section', () => {
-      const comments = wrapper.find('[data-testid="event-modal-comments"]').first()
+      const comments = wrapper.find('[data-testid="comments-section"]').first()
       expect(comments.exists()).toBeTruthy()
       expect(comments.text()).toContain('Comments')
-    })
-
-    it('should not render comments if there are not any', () => {
-      const comments = wrapper.find('[data-testid="event-comment"]')
-      expect(comments.exists()).toBeFalsy()
-    })
-
-    it('should render comments if there are any', () => {
-      const eventWithComments = mockEvents[1]
-      wrapper = mount(
-        <RecoilRoot>
-          <EventModal eventId={eventWithComments.id} toggleModal={toggleModal} />
-        </RecoilRoot>
-      )
-
-      const comment = wrapper.find('[data-testid="event-comment"]').first()
-      expect(comment.exists()).toBeTruthy()
     })
   })
 
@@ -123,6 +106,34 @@ describe('EventModal component', () => {
 
       attendeesEl = await screen.findByTestId('event-modal-attendees')
       expect(attendeesEl).toHaveTextContent(`${event.maxAttendees}/${event.maxAttendees}`)
+    })
+
+    it('should update comment section when new comment is submitted', async () => {
+      const onChange = jest.fn()
+      const eventWithComments = mockEvents[1]
+
+      render(
+        <RecoilRoot>
+          <RecoilObserver node={eventsState} onChange={onChange} />
+          <EventModal eventId={eventWithComments.id} toggleModal={toggleModal} />
+        </RecoilRoot>
+      )
+
+      const commentsBefore = await screen.findAllByTestId('comment')
+      expect(commentsBefore).toBeDefined()
+
+      const input = (await screen.findAllByTestId('post-comment-input'))[0]
+      expect(input).toBeInTheDocument()
+
+      fireEvent.change(input, { target: { value: 'Lorem Ipsum' } })
+
+      const button = (await screen.findAllByTestId('post-comment-button'))[0]
+      expect(button).toBeInTheDocument()
+
+      fireEvent.click(button)
+
+      const commentsAfter = await screen.findAllByTestId('comment')
+      expect(commentsAfter.length).toBe(commentsBefore.length + 1)
     })
   })
 })

@@ -10,7 +10,7 @@ export interface IEvent {
   comments?: IComment[]
 }
 
-interface IComment {
+export interface IComment {
   id: string
   text: string
 }
