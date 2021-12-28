@@ -12,4 +12,8 @@ export const DateInput = styled.input``
 
 export const TimeInput = styled.input``
 
+export const PlaceInput = styled.input``
+
+export const MaxAttendeesInput = styled.input``
+
 export const Button = styled.button``

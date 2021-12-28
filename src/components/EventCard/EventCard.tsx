@@ -36,7 +36,7 @@ const EventCard: FunctionComponent<Props> = ({ event }) => {
         onEscapeKeydown={toggleModal}
         data-testid="event-card-modal"
       >
-        <EventModal eventId={event.id} toggleModal={toggleModal} />
+        <EventModal data-testid="dinmamma" eventId={event.id} toggleModal={toggleModal} />
       </StyledModal>
     </>
   )

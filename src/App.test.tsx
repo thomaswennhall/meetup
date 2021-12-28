@@ -130,5 +130,29 @@ describe('App', () => {
 
       expect(eventCards.length).toBe(mockEvents.length)
     })
+    it('should NOT show create event modal initially', () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <App />
+          </RecoilRoot>
+        </ThemeProvider>
+      )
+      const form = screen.queryByTestId('create_event-form')
+      expect(form).not.toBeInTheDocument()
+    })
+    it('should show create event modal on click', async () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <App />
+          </RecoilRoot>
+        </ThemeProvider>
+      )
+      const button = await screen.findByTestId('open_create-button')
+      fireEvent.click(button)
+      const form = await screen.findByTestId('create_event-form')
+      expect(form).toBeInTheDocument()
+    })
   })
 })
