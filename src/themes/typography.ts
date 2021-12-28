@@ -21,7 +21,12 @@ export const H3 = styled.h3`
   font-size: 1.2rem;
 `
 
-const baseText = css`
+export const Label = styled.label`
+  ${baseHeading}
+  font-weight: 400;
+`
+
+export const baseText = css`
   font-family: 'Heebo';
   color: ${theme.colors.text.dark};
 `

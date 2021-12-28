@@ -5,6 +5,8 @@ import { RecoilRoot } from 'recoil'
 import { RecoilObserver } from '../../Recoil/observers'
 import eventsState from '../../Recoil/atoms/events'
 import mockEvents from '../../models/mockData'
+import { ThemeProvider } from 'styled-components'
+import theme from '../../themes'
 
 describe('EventModal component', () => {
   const event = mockEvents[0]
@@ -13,9 +15,11 @@ describe('EventModal component', () => {
 
   it('should render without errors', () => {
     shallow(
-      <RecoilRoot>
-        <EventModal eventId={event.id} toggleModal={toggleModal} />
-      </RecoilRoot>
+      <ThemeProvider theme={theme}>
+        <RecoilRoot>
+          <EventModal eventId={event.id} toggleModal={toggleModal} />
+        </RecoilRoot>
+      </ThemeProvider>
     )
   })
 
@@ -24,9 +28,11 @@ describe('EventModal component', () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <RecoilRoot>
-          <EventModal eventId={event.id} toggleModal={toggleModal} />
-        </RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <EventModal eventId={event.id} toggleModal={toggleModal} />
+          </RecoilRoot>
+        </ThemeProvider>
       )
     })
 
@@ -66,10 +72,12 @@ describe('EventModal component', () => {
     beforeEach(() => {
       const onChange = jest.fn()
       render(
-        <RecoilRoot>
-          <RecoilObserver node={eventsState} onChange={onChange} />
-          <EventModal eventId={event.id} toggleModal={toggleModal} />
-        </RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <RecoilObserver node={eventsState} onChange={onChange} />
+            <EventModal eventId={event.id} toggleModal={toggleModal} />
+          </RecoilRoot>
+        </ThemeProvider>
       )
     })
 
@@ -113,10 +121,12 @@ describe('EventModal component', () => {
       const eventWithComments = mockEvents[1]
 
       render(
-        <RecoilRoot>
-          <RecoilObserver node={eventsState} onChange={onChange} />
-          <EventModal eventId={eventWithComments.id} toggleModal={toggleModal} />
-        </RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <RecoilObserver node={eventsState} onChange={onChange} />
+            <EventModal eventId={eventWithComments.id} toggleModal={toggleModal} />
+          </RecoilRoot>
+        </ThemeProvider>
       )
 
       const commentsBefore = await screen.findAllByTestId('comment')

@@ -1,12 +1,12 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import { nanoid } from 'nanoid'
 import { IEvent } from '../../models'
 
 import CtaButton from '../CtaButton'
 import * as S from './CreateEvent.styled'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import eventsSelector from '../../Recoil/selectors/eventsSelector'
+import { useSetRecoilState } from 'recoil'
 import eventsState from '../../Recoil/atoms/events'
+import { Label } from '../../themes/typography'
 
 interface Props {
   toggleModal?: () => void
@@ -39,7 +39,6 @@ const CreateEvent: FunctionComponent<Props> = ({ toggleModal = () => {} }) => {
     }
   }
 
-  //const [events] = useRecoilState(eventsSelector)
   const setEvents = useSetRecoilState(eventsState)
   const createNewEvent = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -50,50 +49,60 @@ const CreateEvent: FunctionComponent<Props> = ({ toggleModal = () => {} }) => {
 
   return (
     <S.Form data-testid="create_event-form" onSubmit={e => createNewEvent(e)}>
+      <Label htmlFor="title">title</Label>
       <S.TitleInput
         name="title"
+        id="title"
         type="text"
-        placeholder="Title..."
         value={newEvent.title}
         onChange={e => changeHandler(e)}
         data-testid="title-input"
         required
         minLength={3}
       />
+      <Label htmlFor="description">description</Label>
       <S.DescriptionInput
         name="description"
-        placeholder="Description..."
+        id="description"
         value={newEvent.description}
         onChange={e => changeHandler(e)}
         data-testid="description-input"
         required
       />
+      <Label htmlFor="date">when?</Label>
       <S.DateInput
         name="date"
+        id="date"
         type="date"
         value={newEvent.date.toLocaleDateString()}
         onChange={e => changeHandler(e)}
         data-testid="date-input"
         required
       />
+      <Label htmlFor="time">what time?</Label>
       <S.TimeInput
         name="time"
+        id="time"
         type="time"
         value={newEvent.time}
         onChange={e => changeHandler(e)}
         data-testid="time-input"
         required
       />
+      <Label htmlFor="place">where?</Label>
       <S.PlaceInput
         name="place"
+        id="place"
         type="text"
         value={newEvent.place}
         onChange={e => changeHandler(e)}
         data-testid="place-input"
         required
       />
+      <Label htmlFor="maxAttendees">how many can attend?</Label>
       <S.MaxAttendeesInput
         name="maxAttendees"
+        id="maxAttendees"
         type="number"
         value={newEvent.maxAttendees}
         onChange={e => changeHandler(e)}

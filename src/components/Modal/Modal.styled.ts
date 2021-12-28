@@ -9,4 +9,5 @@ export const StyledModal = Modal.styled`
   max-width: 90vw;
 
   border-radius: 1rem;
+  overflow: scroll;
 `

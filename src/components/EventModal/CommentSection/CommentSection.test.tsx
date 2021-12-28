@@ -1,23 +1,37 @@
 import { shallow, mount, ReactWrapper } from 'enzyme'
+import { ThemeProvider } from 'styled-components'
 import CommentSection from '.'
 import mockEvents from '../../../models/mockData'
+import theme from '../../../themes'
 
 const comments = mockEvents[1].comments
 const postComment = jest.fn()
 
 describe('CommentSection component', () => {
   it('should render without errors', () => {
-    shallow(<CommentSection comments={comments} postComment={postComment} />)
+    shallow(
+      <ThemeProvider theme={theme}>
+        <CommentSection comments={comments} postComment={postComment} />
+      </ThemeProvider>
+    )
   })
 
   describe('Blackbox', () => {
     let wrapper: ReactWrapper
     beforeEach(() => {
-      wrapper = mount(<CommentSection comments={comments} postComment={postComment} />)
+      wrapper = mount(
+        <ThemeProvider theme={theme}>
+          <CommentSection comments={comments} postComment={postComment} />
+        </ThemeProvider>
+      )
     })
 
     it('should not render comments if there are none', () => {
-      wrapper = mount(<CommentSection comments={undefined} postComment={postComment} />)
+      wrapper = mount(
+        <ThemeProvider theme={theme}>
+          <CommentSection comments={undefined} postComment={postComment} />
+        </ThemeProvider>
+      )
       const comments = wrapper.find('[data-testid="comment"]')
       expect(comments.exists()).toBeFalsy()
     })
