@@ -66,6 +66,31 @@ describe('EventModal component', () => {
       expect(comments.exists()).toBeTruthy()
       expect(comments.text()).toContain('Comments')
     })
+
+    it('should show a rating if event contains one', () => {
+      const rating = wrapper.find('[data-testid="event-modal-rating"]').first()
+      expect(rating.exists()).toBeTruthy()
+      expect(rating.text()).toContain(event.rating![0])
+    })
+
+    it('should NOT show a rating if event does not contains one', () => {
+      const eventNoRating = mockEvents[2]
+      const wrapper1 = mount(
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <EventModal eventId={eventNoRating.id} toggleModal={toggleModal} />
+          </RecoilRoot>
+        </ThemeProvider>
+      )
+      const rating = wrapper1.find('[data-testid="event-modal-rating"]').first()
+      expect(rating.exists()).toBeTruthy()
+      expect(rating.text()).toContain('no rating yet')
+    })
+
+    it('should have an input for rating the event', () => {
+      const ratingInput = wrapper.find('[data-testid="rating-input"]').first()
+      expect(ratingInput.exists()).toBeTruthy()
+    })
   })
 
   describe('Whitebox', () => {
@@ -114,6 +139,46 @@ describe('EventModal component', () => {
 
       attendeesEl = await screen.findByTestId('event-modal-attendees')
       expect(attendeesEl).toHaveTextContent(`${event.maxAttendees}/${event.maxAttendees}`)
+    })
+
+    it('should update event rating on change', async () => {
+      let rating = await screen.findAllByTestId('event-modal-rating')
+      expect(rating[0]).toHaveTextContent(`${event.rating![0]}`)
+
+      const testRating = 3
+      const ratingInput = await screen.findByTestId('rating-input')
+      fireEvent.change(ratingInput, { target: { value: testRating }})
+
+      rating = await screen.findAllByTestId('event-modal-rating')
+
+      const newRating = (event.rating![0] * event.rating![1]  + testRating) / (event.rating![1] + 1)
+      expect(rating[0]).toHaveTextContent(`${newRating}`)
+    })
+  })
+
+  describe('other tests', () => {
+    it('should create event rating on change if event does not have a rating yet', async () => {
+      const onChange = jest.fn()
+      const eventNoRating = mockEvents[2]
+
+      render(
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <RecoilObserver node={eventsState} onChange={onChange} />
+            <EventModal eventId={eventNoRating.id} toggleModal={toggleModal} />
+          </RecoilRoot>
+        </ThemeProvider>
+      )
+
+      let rating = await screen.findAllByTestId('event-modal-rating')
+      expect(rating[0]).toHaveTextContent('no rating yet')
+
+      const testRating = 3
+      const ratingInput = await screen.findByTestId('rating-input')
+      fireEvent.change(ratingInput, { target: { value: testRating }})
+
+      rating = await screen.findAllByTestId('event-modal-rating')
+      expect(rating[0]).toHaveTextContent(`${testRating}`)
     })
 
     it('should update comment section when new comment is submitted', async () => {

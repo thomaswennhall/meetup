@@ -8,9 +8,12 @@ export interface IEvent {
   maxAttendees: number
   attendees: number
   comments?: IComment[]
+  rating?: TRating
 }
 
 export interface IComment {
   id: string
   text: string
 }
+
+export type TRating = [number, number]

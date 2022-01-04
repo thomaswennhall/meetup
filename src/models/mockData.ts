@@ -9,6 +9,7 @@ const mockEvents: IEvent[] = [
     place: 'Stockholm',
     attendees: 15,
     maxAttendees: 20,
+    rating: [5, 3],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
   },

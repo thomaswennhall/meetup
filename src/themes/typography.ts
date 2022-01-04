@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import theme from './'
 
+
 const baseHeading = css`
   font-family: 'Kreon';
   color: ${theme.colors.text.dark};
