@@ -16,18 +16,20 @@ const EventCard: FunctionComponent<Props> = ({ event }) => {
     setModalVisible(!modalVisible)
   }
 
+  const hasPassed: boolean = Date.now() - +event.date  > 0
+  
   return (
     <>
-      <S.Card onClick={toggleModal} data-test="event-card" data-testid="event-card">
-        <H2 data-test="event-title">{event.title}</H2>
-        <H3 data-test="event-date">
+      <S.Card hasPassed={hasPassed} onClick={toggleModal} data-test="event-card" data-testid="event-card">
+        <S.Heading2 hasPassed={hasPassed} data-test="event-title">{event.title}</S.Heading2>
+        <S.Date hasPassed={hasPassed} data-test="event-date">
           {event.date.toLocaleDateString()} {event.time}
-        </H3>
-        <H3 data-test="event-place">{event.place}</H3>
-        <H3 data-test="event-attendees">
+        </S.Date>
+        <S.Heading3 hasPassed={hasPassed} data-test="event-place">{event.place}</S.Heading3>
+        <S.Heading3 hasPassed={hasPassed} data-test="event-attendees">
           spots: {event.attendees}/{event.maxAttendees}
-        </H3>
-        <P data-test="event-description">{event.description.substring(0, 90)}...</P>
+        </S.Heading3>
+        <S.Text hasPassed={hasPassed} data-test="event-description">{event.description.substring(0, 90)}...</S.Text>
       </S.Card>
       <StyledModal
         isOpen={modalVisible}

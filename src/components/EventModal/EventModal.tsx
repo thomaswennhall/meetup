@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react'
 import { IComment, IEvent } from '../../models'
-import { Container, Rating } from './EventModal.styled'
+import * as S from './EventModal.styled'
 import { H1, H2, H3, P } from '../../themes/typography'
 import { useRecoilState } from 'recoil'
 import eventsState from '../../Recoil/atoms/events'
@@ -48,13 +48,15 @@ const EventModal: FunctionComponent<Props> = ({ eventId, toggleModal }) => {
     setEvents([...updatedEvents])
   }
 
+  const hasPassed: boolean = Date.now() - +event.date  > 0
+
   return (
-    <Container data-testid="event-modal">
+    <S.Container data-testid="event-modal">
       <H1 data-testid="event-modal-title">{event.title}</H1>
-      <Rating data-testid="event-modal-rating">	&#9733; {event.rating ? event.rating[0] : 'no rating yet'}</Rating>
-      <H2 data-testid="event-modal-date">
+      <S.Rating data-testid="event-modal-rating">	&#9733; {event.rating ? event.rating[0] : 'no rating yet'}</S.Rating>
+      <S.Date hasPassed={hasPassed} data-testid="event-modal-date">
         {event.date.toLocaleDateString()} {event.time}
-      </H2>
+      </S.Date>
       <H3 data-testid="event-modal-place">{event.place}</H3>
       <H3 data-testid="event-modal-attendees">
         {event.attendees}/{event.maxAttendees}
@@ -74,7 +76,7 @@ const EventModal: FunctionComponent<Props> = ({ eventId, toggleModal }) => {
         </select>
       </div>
       <CommentSection comments={event.comments} postComment={postComment} />
-    </Container>
+    </S.Container>
   )
 }
 

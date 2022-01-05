@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid'
 
 import * as S from './CommentSection.styled'
 import { IComment } from '../../../models'
-import { H3, Label, P } from '../../../themes/typography'
+import { H3, Label } from '../../../themes/typography'
 
 interface Props {
   comments: IComment[] | undefined

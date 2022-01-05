@@ -49,6 +49,17 @@ const mockEvents: IEvent[] = [
     maxAttendees: 2,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
+  },
+  {
+    id: 'kljpofjpr9ui3209r',
+    title: 'Födelsedag',
+    date: new Date('2022-02-15'),
+    time: '07:00',
+    place: 'Överallt',
+    attendees: 1,
+    maxAttendees: 1000,
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
   }
 ]
 

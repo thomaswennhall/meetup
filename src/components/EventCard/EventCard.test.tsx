@@ -1,6 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react'
-import { mount, shallow } from 'enzyme'
+import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme'
+import { ThemeProvider } from 'styled-components'
 import EventCard from '.'
+import theme from '../../themes'
 
 describe('EventCard component', () => {
   const event = {
@@ -16,54 +18,67 @@ describe('EventCard component', () => {
   }
 
   it('should render without errors', () => {
-    shallow(<EventCard event={event} />)
+    shallow(
+      <ThemeProvider theme={theme} >
+        <EventCard event={event} />
+      </ThemeProvider>
+    )
   })
 
   describe('blackbox tests', () => {
+    let wrapper: ReactWrapper
+    beforeEach(() => {
+      wrapper = mount(
+        <ThemeProvider theme={theme} >
+          <EventCard event={event} />
+        </ThemeProvider>
+      )
+    })
+
     it('should render correct title for event', () => {
-      const wrapper = shallow(<EventCard event={event} />)
-      const title = wrapper.find('[data-test="event-title"]')
+      const title = wrapper.find('[data-test="event-title"]').first()
 
       expect(title.text()).toBe(event.title)
     })
     it('should render correct date for event', () => {
-      const wrapper = shallow(<EventCard event={event} />)
-      const date = wrapper.find('[data-test="event-date"]')
+      const date = wrapper.find('[data-test="event-date"]').first()
 
       expect(date.text()).toBe(`${event.date.toLocaleDateString()} ${event.time}`)
     })
     it('should render correct place for event', () => {
-      const wrapper = shallow(<EventCard event={event} />)
-      const place = wrapper.find('[data-test="event-place"]')
+      const place = wrapper.find('[data-test="event-place"]').first()
 
       expect(place.text()).toBe(event.place)
     })
     it('should render a shortened version of description for event', () => {
-      const wrapper = shallow(<EventCard event={event} />)
-      const desc = wrapper.find('[data-test="event-description"]')
+      const desc = wrapper.find('[data-test="event-description"]').first()
 
       expect(desc.text().length).toBe(93)
     })
     it('should render the number of people who are attending the event', () => {
-      const wrapper = shallow(<EventCard event={event} />)
-      const attendees = wrapper.find('[data-test="event-attendees"]')
+      const attendees = wrapper.find('[data-test="event-attendees"]').first()
 
       expect(attendees.text()).toContain(`${event.attendees}/${event.maxAttendees}`)
     })
     it('should have a modal component', () => {
-      const wrapper = shallow(<EventCard event={event} />)
-      const modal = wrapper.find('[data-testid="event-card-modal"]')
+      const modal = wrapper.find('[data-testid="event-card-modal"]').first()
 
       expect(modal.exists()).toBeTruthy()
     })
     it('should not show event modal initially', () => {
-      const wrapper = mount(<EventCard event={event} />)
-      const eventModal = wrapper.find('[data-testid="event-modal"]')
-
+      const eventModal = wrapper.find('[data-testid="event-modal"]').first()
       expect(eventModal.exists()).toBeFalsy()
     })
+  })
+
+  describe('Whitebox', () => {
     it('should show event modal on click', async () => {
-      render(<EventCard event={event} />)
+      render( 
+        <ThemeProvider theme={theme} >
+          <EventCard event={event} />
+        </ThemeProvider>
+      )
+      
       const card = await screen.findByTestId('event-card')
       fireEvent.click(card)
 
