@@ -13,9 +13,9 @@ export default selector({
     )
 
     if (searchString.length > 2 && filteredState.length) {
-      return sortByDate(filteredState)
+      return sortByFutureFirst(sortByDate(filteredState))
     } else {
-      return sortByDate(get(eventsState))
+      return sortByFutureFirst(sortByDate(get(eventsState)))
     }
   },
   set: () => {}
@@ -23,4 +23,10 @@ export default selector({
 
 function sortByDate(events: IEvent[]) {
   return [...events].sort((a, b) => +a.date - +b.date)
+}
+
+function sortByFutureFirst(events: IEvent[]) {
+  const futureEvents = [...events].filter(ev => +ev.date > Date.now())
+  const passedEvents = [...events].filter(ev => +ev.date <= Date.now()).reverse()
+  return futureEvents.concat(passedEvents)
 }

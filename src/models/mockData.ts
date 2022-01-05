@@ -60,6 +60,17 @@ const mockEvents: IEvent[] = [
     maxAttendees: 1000,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
+  },
+  {
+    id: 'leet1337',
+    title: 'Midsommar',
+    date: new Date('2022-06-24'),
+    time: '07:00',
+    place: 'Västerås',
+    attendees: 8,
+    maxAttendees: 12,
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
   }
 ]
 

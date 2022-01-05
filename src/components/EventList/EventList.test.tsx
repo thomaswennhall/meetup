@@ -28,7 +28,7 @@ describe('EventList component', () => {
       const events = wrapper.find('[data-test="event-card"]')
       expect(events.length).toBe(mockEvents.length * 2)
     })
-    it('should sort list of events by date', () => {
+    it('should sort list of events by closest future date and then closest passed date', () => {
       const wrapper = mount(
         <ThemeProvider theme={theme}>
           <RecoilRoot>
@@ -43,8 +43,8 @@ describe('EventList component', () => {
       const fourthDate = new Date(dates.at(6).text()).getTime()
 
       expect(firstDate).toBeLessThan(secondDate)
-      expect(secondDate).toBeLessThan(thirdDate)
-      expect(thirdDate).toBeLessThan(fourthDate)
+      expect(secondDate).toBeGreaterThan(thirdDate)
+      expect(thirdDate).toBeGreaterThan(fourthDate)
     })
   })
 })
