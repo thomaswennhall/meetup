@@ -1,11 +1,12 @@
 import React, { FunctionComponent, useState } from 'react'
 import { IComment, IEvent } from '../../models'
 import * as S from './EventModal.styled'
-import { H1, H2, H3, P } from '../../themes/typography'
+import { H1, H3, P } from '../../themes/typography'
 import { useRecoilState } from 'recoil'
 import eventsState from '../../Recoil/atoms/events'
 
 import CtaButton from '../CtaButton'
+import RatingForm from './RatingForm'
 import CommentSection from './CommentSection'
 
 interface Props {
@@ -32,16 +33,13 @@ const EventModal: FunctionComponent<Props> = ({ eventId, toggleModal }) => {
     setEvents([...updatedEvents])
   }
 
-  const [newRating, setNewRating] = useState(3)
-
-  const rate = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setNewRating(+e.target.value)
+  const rate = (ratingValue: number) => {
 
     const updatedRatingAmount: number = event.rating ? event.rating![1] + 1 : 1
     const updatedRatingValue: number = 
       event.rating ? 
-      +((event.rating![0] * event.rating![1] + newRating) / updatedRatingAmount).toFixed(2) 
-      : newRating
+      +((event.rating![0] * event.rating![1] + ratingValue) / updatedRatingAmount).toFixed(2) 
+      : ratingValue
 
     event.rating = [updatedRatingValue, updatedRatingAmount]
     const updatedEvents = [...events].map(ev => (ev.id === event.id ? event : ev))
@@ -63,18 +61,7 @@ const EventModal: FunctionComponent<Props> = ({ eventId, toggleModal }) => {
       </H3>
       <P data-testid="event-modal-description">{event.description}</P>
       <CtaButton testId="event-modal-button" text="Attend" clickHandler={attend} />
-      <div style={{display: 'flex', gap: '1rem'}}>
-        <H3>
-          Rate this meetup: 
-        </H3>
-        <select value={newRating} onChange={e => rate(e)} data-testid="rating-input" style={{padding: '0.3rem'}}>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-        </select>
-      </div>
+      <RatingForm rate={rate} />
       <CommentSection comments={event.comments} postComment={postComment} />
     </S.Container>
   )

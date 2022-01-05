@@ -149,6 +149,10 @@ describe('EventModal component', () => {
       const ratingInput = await screen.findByTestId('rating-input')
       fireEvent.change(ratingInput, { target: { value: testRating }})
 
+
+      const ratingForm = await screen.findByTestId('rating-form')
+      fireEvent.submit(ratingForm)
+
       rating = await screen.findAllByTestId('event-modal-rating')
 
       const newRating = (event.rating![0] * event.rating![1]  + testRating) / (event.rating![1] + 1)
@@ -176,6 +180,9 @@ describe('EventModal component', () => {
       const testRating = 3
       const ratingInput = await screen.findByTestId('rating-input')
       fireEvent.change(ratingInput, { target: { value: testRating }})
+
+      const ratingForm = await screen.findByTestId('rating-form')
+      fireEvent.submit(ratingForm)
 
       rating = await screen.findAllByTestId('event-modal-rating')
       expect(rating[0]).toHaveTextContent(`${testRating}`)

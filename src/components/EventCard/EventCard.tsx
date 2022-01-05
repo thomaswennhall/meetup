@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useState } from 'react'
 import { IEvent } from '../../models'
-import { H2, H3, P } from '../../themes/typography'
 import { StyledModal } from '../Modal/Modal.styled'
 import * as S from './EventCard.styled'
 

@@ -41,12 +41,12 @@ describe('CommentSection component', () => {
       expect(comment.exists()).toBeTruthy()
     })
 
-    it('should render an postComment input', () => {
+    it('should render a postComment input', () => {
       const input = wrapper.find('[data-testid="post-comment-input"]')
       expect(input.exists()).toBeTruthy()
     })
 
-    it('should render an postComment button', () => {
+    it('should render a postComment button', () => {
       const button = wrapper.find('[data-testid="post-comment-button"]')
       expect(button.exists()).toBeTruthy()
     })
