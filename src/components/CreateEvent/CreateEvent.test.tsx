@@ -25,10 +25,11 @@ describe('CreateEvent component', () => {
   describe('Blackbox', () => {
     let wrapper: ReactWrapper
 
+    const toggleModalMock = jest.fn()
     beforeEach(() => {
       wrapper = mount(
         <RecoilRoot>
-          <CreateEvent toggleModal={jest.fn()} />
+          <CreateEvent toggleModal={toggleModalMock} />
         </RecoilRoot>
       )
     })
@@ -117,11 +118,13 @@ describe('CreateEvent component', () => {
 
   describe('Whitebox', () => {
     const onChange = jest.fn()
+    const toggleModalMock = jest.fn()
+
     beforeEach(() => {
       render(
         <RecoilRoot>
           <RecoilObserver node={eventsSelector} onChange={onChange} />
-          <CreateEvent />
+          <CreateEvent toggleModal={toggleModalMock} />
         </RecoilRoot>
       )
     })
@@ -158,6 +161,19 @@ describe('CreateEvent component', () => {
       fireEvent.submit(form)
 
       expect(onChange).toHaveBeenCalledTimes(2)
+    })
+
+    it('should update recoil state on create button click if all fields have a value', async () => {
+      const titleInput = await screen.findByTestId('title-input')
+      fireEvent.change(titleInput, { target: { value: 'title' } })
+
+      const descInput = await screen.findByTestId('description-input')
+      fireEvent.change(descInput, { target: { value: 'A description...' } })
+
+      const form = await screen.findByTestId('create_event-form')
+      fireEvent.submit(form)
+
+      expect(toggleModalMock).toHaveBeenCalledTimes(1)
     })
   })
 })

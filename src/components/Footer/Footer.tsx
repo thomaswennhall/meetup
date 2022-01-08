@@ -19,7 +19,7 @@ const Footer = () => {
         onEscapeKeydown={toggleModal}
         data-testid="create-event-modal"
       >
-        <CreateEvent />
+        <CreateEvent toggleModal={toggleModal} />
       </StyledModal>
     </Wrapper>
   )

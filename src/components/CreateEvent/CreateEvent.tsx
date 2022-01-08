@@ -44,6 +44,7 @@ const CreateEvent: FunctionComponent<Props> = ({ toggleModal = () => {} }) => {
     e.preventDefault()
     if (newEvent.title && newEvent.description) {
       setEvents(events => [...events, newEvent])
+      toggleModal()
     }
   }
 

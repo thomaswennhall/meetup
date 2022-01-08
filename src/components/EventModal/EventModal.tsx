@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 import { IComment, IEvent } from '../../models'
 import * as S from './EventModal.styled'
 import { H1, H3, P } from '../../themes/typography'
