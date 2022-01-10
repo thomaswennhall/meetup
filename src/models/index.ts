@@ -9,6 +9,7 @@ export interface IEvent {
   attendees: number
   comments?: IComment[]
   rating?: TRating
+  themes?: Theme[]
 }
 
 export interface IComment {
@@ -17,3 +18,21 @@ export interface IComment {
 }
 
 export type TRating = [number, number]
+
+export enum Theme {
+  MUSIC = 'music',
+  HOLIDAY = 'holiday',
+  PROGRAMMING = 'programming',
+  SCIENCE = 'science',
+  LEARNING = 'learning',
+}
+
+export interface IThemeCheck {
+  music: boolean
+  holiday: boolean
+  programming: boolean
+  science: boolean
+  learning: boolean
+}
+
+export const themes: Theme[] = Object.values(Theme)

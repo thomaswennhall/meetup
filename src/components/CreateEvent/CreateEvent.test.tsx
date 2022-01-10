@@ -2,9 +2,10 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { ReactWrapper, shallow, mount } from 'enzyme'
 import { RecoilRoot } from 'recoil'
 import CreateEvent from '.'
-import eventsState from '../../Recoil/atoms/events'
 import { RecoilObserver } from '../../Recoil/observers'
 import eventsSelector from '../../Recoil/selectors/eventsSelector'
+import { themes } from '../../models'
+import userEvent from '@testing-library/user-event'
 
 describe('CreateEvent component', () => {
   it('should render without props', () => {
@@ -110,6 +111,21 @@ describe('CreateEvent component', () => {
       expect(+maxAttendees.render().val()).toBe(testInput)
     })
 
+    it('should have a section for event themes inputs', () => {
+      const themesInput = wrapper.find('[data-testid="themes-input"]').first()
+      expect(themesInput.exists()).toBeTruthy()
+    })
+    it('should render an input for each theme', () => {
+      const checkbox = wrapper.find('[data-testid="theme-checkbox"]')
+      expect(checkbox.length).toBe(themes.length)
+    })
+    // it('should check theme-checkbox on click', () => {
+    //   const checkbox = wrapper.find('[data-testid="theme-checkbox"]').first()
+    //   const input = checkbox.children('input').getElement()
+
+    //   expect(input).not.toBeChecked()
+    // })
+
     it('should have a button for creating an event', () => {
       const button = wrapper.find('[data-testid="create-button"]').first()
       expect(button.exists()).toBeTruthy()
@@ -117,6 +133,28 @@ describe('CreateEvent component', () => {
   })
 
   describe('Whitebox', () => {
+    const onChange = jest.fn()
+    const toggleModalMock = jest.fn()
+
+    beforeEach(() => {
+      render(
+        <RecoilRoot>
+          <RecoilObserver node={eventsSelector} onChange={onChange} />
+          <CreateEvent toggleModal={toggleModalMock} />
+        </RecoilRoot>
+      )
+    })
+
+    it('should check a theme-checkbox on click', async () => {
+      const checkbox = (await screen.findAllByTestId('checkbox'))[0]
+
+      expect(checkbox).not.toBeChecked()
+      userEvent.click(checkbox)
+      expect(checkbox).toBeChecked()
+    })
+  })
+
+  describe('Submit tests', () => {
     const onChange = jest.fn()
     const toggleModalMock = jest.fn()
 
@@ -145,7 +183,7 @@ describe('CreateEvent component', () => {
 
       const dateInput = await screen.findByTestId('date-input')
       fireEvent.change(dateInput, {
-        target: { value: new Date('2022-01-06').toLocaleDateString() }
+        target: { value: new Date('2022-01-06').toLocaleDateString() },
       })
 
       const timeInput = await screen.findByTestId('time-input')
