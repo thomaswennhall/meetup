@@ -1,4 +1,4 @@
-import { IEvent } from '.'
+import { IEvent, Theme } from '.'
 
 const mockEvents: IEvent[] = [
   {
@@ -10,8 +10,9 @@ const mockEvents: IEvent[] = [
     attendees: 15,
     maxAttendees: 20,
     rating: [5, 3],
+    themes: [],
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.',
   },
   {
     id: 'oijf+94jt038f',
@@ -23,10 +24,11 @@ const mockEvents: IEvent[] = [
     maxAttendees: 12,
     comments: [
       { id: '1', text: 'Impsum ha?' },
-      { id: '2', text: 'Gravida rhoncus mannen!' }
+      { id: '2', text: 'Gravida rhoncus mannen!' },
     ],
+    themes: [],
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.',
   },
   {
     id: 'oijf+foijfeeijij',
@@ -36,8 +38,9 @@ const mockEvents: IEvent[] = [
     place: 'online',
     attendees: 10,
     maxAttendees: 15,
+    themes: [],
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.',
   },
   {
     id: 'kjkjkjkjkjk',
@@ -47,8 +50,9 @@ const mockEvents: IEvent[] = [
     place: 'online',
     attendees: 2,
     maxAttendees: 2,
+    themes: [],
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.',
   },
   {
     id: 'kljpofjpr9ui3209r',
@@ -58,8 +62,9 @@ const mockEvents: IEvent[] = [
     place: 'Överallt',
     attendees: 1,
     maxAttendees: 1000,
+    themes: [],
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.',
   },
   {
     id: 'leet1337',
@@ -69,9 +74,10 @@ const mockEvents: IEvent[] = [
     place: 'Västerås',
     attendees: 8,
     maxAttendees: 12,
+    themes: [Theme.HOLIDAY],
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.'
-  }
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.',
+  },
 ]
 
 export default mockEvents

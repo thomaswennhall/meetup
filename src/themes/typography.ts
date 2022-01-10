@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 import theme from './'
 
-
 const baseHeading = css`
   font-family: 'Kreon';
   color: ${theme.colors.text.dark};
@@ -29,10 +28,10 @@ export const Label = styled.label`
 
 export const baseText = css`
   font-family: 'Heebo';
-  color: ${theme.colors.text.dark};
 `
 
-export const P = styled.p`
+export const P = styled.p<{ light?: boolean }>`
   ${baseText}
+  color: ${props => (props.light ? `${theme.colors.text.light}` : `${theme.colors.text.dark}`)};
   font-weight: 300;
 `

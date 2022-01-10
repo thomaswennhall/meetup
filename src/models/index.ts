@@ -1,3 +1,5 @@
+import stylingTheme from '../themes'
+
 export interface IEvent {
   id: string
   title: string
@@ -9,7 +11,7 @@ export interface IEvent {
   attendees: number
   comments?: IComment[]
   rating?: TRating
-  themes?: Theme[]
+  themes: Theme[]
 }
 
 export interface IComment {
@@ -33,6 +35,22 @@ export interface IThemeCheck {
   programming: boolean
   science: boolean
   learning: boolean
+}
+
+export interface IThemeColors {
+  music: string
+  holiday: string
+  programming: string
+  science: string
+  learning: string
+}
+
+export const themeColors: IThemeColors = {
+  music: stylingTheme.colors.blue,
+  holiday: stylingTheme.colors.green,
+  programming: stylingTheme.colors.orange,
+  science: stylingTheme.colors.red,
+  learning: stylingTheme.colors.yellow,
 }
 
 export const themes: Theme[] = Object.values(Theme)

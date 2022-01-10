@@ -23,6 +23,7 @@ const CreateEvent: FunctionComponent<Props> = ({ toggleModal = () => {} }) => {
     time: '18:00',
     attendees: 0,
     maxAttendees: 10,
+    themes: [],
     place: 'online',
   }
   const [newEvent, setNewEvent] = useState<IEvent>(initEvent)
@@ -63,7 +64,6 @@ const CreateEvent: FunctionComponent<Props> = ({ toggleModal = () => {} }) => {
 
     if (newEvent.title && newEvent.description) {
       setEvents(events => [...events, newEvent])
-      console.log(newEvent)
       toggleModal()
     }
   }
