@@ -50,7 +50,7 @@ const mockEvents: IEvent[] = [
     place: 'online',
     attendees: 2,
     maxAttendees: 2,
-    themes: [],
+    themes: [Theme.LEARNING, Theme.HOLIDAY],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.',
   },
@@ -62,7 +62,7 @@ const mockEvents: IEvent[] = [
     place: 'Överallt',
     attendees: 1,
     maxAttendees: 1000,
-    themes: [],
+    themes: [Theme.HOLIDAY, Theme.LEARNING],
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lacus et in lorem gravida rhoncus. Bibendum ut sit in diam lobortis. Enim, aliquam erat sit tincidunt.',
   },

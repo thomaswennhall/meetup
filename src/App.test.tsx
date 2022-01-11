@@ -122,7 +122,7 @@ describe('App', () => {
       let eventCards = await screen.findAllByTestId('event-card')
       expect(eventCards.length).toBe(mockEvents.length)
 
-      const testInput = 'ho ho ho'
+      const testInput = 'hijfoiej'
       const input = await screen.findByTestId('search-input')
       fireEvent.change(input, { target: { value: testInput } })
 
@@ -153,7 +153,25 @@ describe('App', () => {
 
       eventCards = await screen.findAllByTestId('event-card')
 
-      expect(eventCards.length).toBe(1)
+      expect(eventCards.length).toBe(3)
+    })
+
+    it('should render event list with theme matching search input on submit', async () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <App />
+          </RecoilRoot>
+        </ThemeProvider>
+      )
+      const testInput = 'holiday learning'
+
+      const input = await screen.findByTestId('search-input')
+      fireEvent.change(input, { target: { value: testInput } })
+
+      const eventCards = await screen.findAllByTestId('event-card')
+
+      expect(eventCards.length).toBe(2)
     })
 
     it('should NOT show create event modal initially', () => {
