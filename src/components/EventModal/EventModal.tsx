@@ -4,6 +4,7 @@ import * as S from './EventModal.styled'
 import { H1, H3, P } from '../../themes/typography'
 import { useRecoilState } from 'recoil'
 import eventsState from '../../Recoil/atoms/events'
+import { getActualTime } from '../../Recoil/selectors/eventsSelector'
 
 import CtaButton from '../CtaButton'
 import RatingForm from './RatingForm'
@@ -34,11 +35,9 @@ const EventModal: FunctionComponent<Props> = ({ eventId, toggleModal }) => {
   }
 
   const rate = (ratingValue: number) => {
-
     const updatedRatingAmount: number = event.rating ? event.rating![1] + 1 : 1
-    const updatedRatingValue: number = 
-      event.rating ? 
-      +((event.rating![0] * event.rating![1] + ratingValue) / updatedRatingAmount).toFixed(2) 
+    const updatedRatingValue: number = event.rating
+      ? +((event.rating![0] * event.rating![1] + ratingValue) / updatedRatingAmount).toFixed(2)
       : ratingValue
 
     event.rating = [updatedRatingValue, updatedRatingAmount]
@@ -46,12 +45,15 @@ const EventModal: FunctionComponent<Props> = ({ eventId, toggleModal }) => {
     setEvents([...updatedEvents])
   }
 
-  const hasPassed: boolean = Date.now() - +event.date  > 0
+  const hasPassed: boolean = Date.now() - +getActualTime(event.date, event.time) > 0
 
   return (
     <S.Container data-testid="event-modal">
       <H1 data-testid="event-modal-title">{event.title}</H1>
-      <S.Rating data-testid="event-modal-rating">	&#9733; {event.rating ? event.rating[0] : 'no rating yet'}</S.Rating>
+      <S.Rating data-testid="event-modal-rating">
+        {' '}
+        &#9733; {event.rating ? event.rating[0] : 'no rating yet'}
+      </S.Rating>
       <S.Date hasPassed={hasPassed} data-testid="event-modal-date">
         {event.date.toLocaleDateString()} {event.time}
       </S.Date>
@@ -60,7 +62,11 @@ const EventModal: FunctionComponent<Props> = ({ eventId, toggleModal }) => {
         {event.attendees}/{event.maxAttendees}
       </H3>
       <P data-testid="event-modal-description">{event.description}</P>
-      <CtaButton testId="event-modal-button" text="Attend" clickHandler={attend} />
+      {hasPassed ? (
+        <S.RedText>Event has passed</S.RedText>
+      ) : (
+        <CtaButton testId="event-modal-button" text="Attend" clickHandler={attend} />
+      )}
       <RatingForm rate={rate} />
       <CommentSection comments={event.comments} postComment={postComment} />
     </S.Container>

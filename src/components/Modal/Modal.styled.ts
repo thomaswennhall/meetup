@@ -5,8 +5,8 @@ export const StyledModal = Modal.styled`
   padding: 2rem;
   min-height: 65vh;
   max-height: 90vh;
-  min-width: 75vw;
-  max-width: 90vw;
+  min-width: 60vw;
+  max-width: 60rem;
 
   border-radius: 1rem;
   overflow: scroll;

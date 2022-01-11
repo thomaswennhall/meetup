@@ -5,11 +5,17 @@ interface IProps {
   text: string
   clickHandler: () => void
   testId?: string
+  disable?: boolean
 }
 
-const CtaButton: FunctionComponent<IProps> = ({ text, clickHandler, testId = '' }) => {
+const CtaButton: FunctionComponent<IProps> = ({
+  text,
+  clickHandler,
+  testId = '',
+  disable = false,
+}) => {
   return (
-    <Button data-test="cta-button" data-testid={testId} onClick={clickHandler}>
+    <Button disabled={disable} data-test="cta-button" data-testid={testId} onClick={clickHandler}>
       <H3>{text}</H3>
     </Button>
   )

@@ -1,9 +1,9 @@
-import { shallow } from 'enzyme'
+import { mount, shallow } from 'enzyme'
 import CtaButton from '.'
 
 const props = {
   text: 'click me',
-  clickHandler: () => {}
+  clickHandler: () => {},
 }
 
 describe('CtaButton component', () => {
@@ -23,6 +23,14 @@ describe('CtaButton component', () => {
       const button = wrapper.find('[data-test="cta-button"]')
       button.simulate('click')
       expect(mockHandler).toHaveBeenCalled()
+    })
+    it('should be disabled if disable prop is true', () => {
+      const mockHandler = jest.fn()
+
+      const wrapper = mount(<CtaButton disable={true} text="text" clickHandler={mockHandler} />)
+      const button = wrapper.find('[data-test="cta-button"]').first()
+      button.simulate('click')
+      expect(mockHandler).not.toHaveBeenCalled()
     })
   })
 })

@@ -132,6 +132,7 @@ const CreateEvent: FunctionComponent<Props> = ({ toggleModal = () => {} }) => {
         min={1}
       />
       <div data-testid="themes-input">
+        <Label htmlFor="place">select a theme?</Label>
         {themes.map(theme => (
           <Checkbox
             data-testid="theme-checkbox"

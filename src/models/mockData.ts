@@ -68,8 +68,8 @@ const mockEvents: IEvent[] = [
   },
   {
     id: 'leet1337',
-    title: 'Midsommar',
-    date: new Date('2022-06-24'),
+    title: 'Midsommar 23',
+    date: new Date('2023-06-24'),
     time: '07:00',
     place: 'Västerås',
     attendees: 8,

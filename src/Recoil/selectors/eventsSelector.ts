@@ -25,16 +25,16 @@ export default selector({
 })
 
 function getHours(time: string) {
-  return +time.split(':')[0]
+  return time.split(':')[0]
 }
 function getMinutes(time: string) {
-  return +time.split(':')[1]
+  return time.split(':')[1]
 }
 
-function getActualTime(date: Date, time: string) {
-  const actualTime = date
-  actualTime.setHours(getHours(time))
-  actualTime.setMinutes(getMinutes(time))
+export function getActualTime(date: Date, time: string) {
+  const actualTime = new Date(date)
+  actualTime.setHours(+getHours(time))
+  actualTime.setMinutes(+getMinutes(time))
   return actualTime
 }
 

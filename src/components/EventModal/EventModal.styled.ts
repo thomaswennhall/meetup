@@ -9,9 +9,14 @@ export const Container = styled.article`
 `
 
 export const Rating = styled(H2)`
-color: ${props => props.theme.colors.yellow};
+  color: ${props => props.theme.colors.yellow};
 `
 
-export const Date = styled(H2)<{ hasPassed: boolean}>`
-  ${props => props.hasPassed ? `color: ${props.theme.colors.red}` : ''}
+export const Date = styled(H2)<{ hasPassed: boolean }>`
+  ${props => (props.hasPassed ? `color: ${props.theme.colors.red}` : '')}
+`
+
+export const RedText = styled(H2)`
+  color: ${props => props.theme.colors.red};
+  align-self: flex-end;
 `
