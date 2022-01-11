@@ -10,7 +10,6 @@ import theme from '../../themes'
 
 describe('EventModal component', () => {
   const event = mockEvents[0]
-
   const toggleModal = jest.fn()
 
   it('should render without errors', () => {
@@ -73,7 +72,7 @@ describe('EventModal component', () => {
       expect(rating.text()).toContain(event.rating![0])
     })
 
-    it('should NOT show a rating if event does not contains one', () => {
+    it('should NOT show a rating if event does not contain one', () => {
       const eventNoRating = mockEvents[2]
       const wrapper1 = mount(
         <ThemeProvider theme={theme}>
@@ -147,15 +146,14 @@ describe('EventModal component', () => {
 
       const testRating = 3
       const ratingInput = await screen.findByTestId('rating-input')
-      fireEvent.change(ratingInput, { target: { value: testRating }})
-
+      fireEvent.change(ratingInput, { target: { value: testRating } })
 
       const ratingForm = await screen.findByTestId('rating-form')
       fireEvent.submit(ratingForm)
 
       rating = await screen.findAllByTestId('event-modal-rating')
 
-      const newRating = (event.rating![0] * event.rating![1]  + testRating) / (event.rating![1] + 1)
+      const newRating = (event.rating![0] * event.rating![1] + testRating) / (event.rating![1] + 1)
       expect(rating[0]).toHaveTextContent(`${newRating}`)
     })
   })
@@ -179,7 +177,7 @@ describe('EventModal component', () => {
 
       const testRating = 3
       const ratingInput = await screen.findByTestId('rating-input')
-      fireEvent.change(ratingInput, { target: { value: testRating }})
+      fireEvent.change(ratingInput, { target: { value: testRating } })
 
       const ratingForm = await screen.findByTestId('rating-form')
       fireEvent.submit(ratingForm)

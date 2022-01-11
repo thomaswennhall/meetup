@@ -119,12 +119,6 @@ describe('CreateEvent component', () => {
       const checkbox = wrapper.find('[data-testid="theme-checkbox"]')
       expect(checkbox.length).toBe(themes.length)
     })
-    // it('should check theme-checkbox on click', () => {
-    //   const checkbox = wrapper.find('[data-testid="theme-checkbox"]').first()
-    //   const input = checkbox.children('input').getElement()
-
-    //   expect(input).not.toBeChecked()
-    // })
 
     it('should have a button for creating an event', () => {
       const button = wrapper.find('[data-testid="create-button"]').first()

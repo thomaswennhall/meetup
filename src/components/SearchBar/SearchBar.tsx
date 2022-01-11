@@ -16,7 +16,7 @@ const SearchBar: FunctionComponent = () => {
       data-test="search-input"
       data-testid="search-input"
       type="text"
-      placeholder="search..."
+      placeholder="search for titles or themes"
       value={searchString}
       onChange={e => changeHandler(e)}
     />

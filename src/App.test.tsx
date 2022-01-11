@@ -130,6 +130,32 @@ describe('App', () => {
 
       expect(eventCards.length).toBe(mockEvents.length)
     })
+
+    it('should render event list with theme matching search input on submit', async () => {
+      const onChange = jest.fn()
+
+      render(
+        <ThemeProvider theme={theme}>
+          <RecoilRoot>
+            <RecoilObserver node={searchStringState} onChange={onChange} />
+            <App />
+          </RecoilRoot>
+        </ThemeProvider>
+      )
+
+      let eventCards = await screen.findAllByTestId('event-card')
+      expect(eventCards.length).toBe(mockEvents.length)
+
+      const testInput = 'holiday'
+
+      const input = await screen.findByTestId('search-input')
+      fireEvent.change(input, { target: { value: testInput } })
+
+      eventCards = await screen.findAllByTestId('event-card')
+
+      expect(eventCards.length).toBe(1)
+    })
+
     it('should NOT show create event modal initially', () => {
       render(
         <ThemeProvider theme={theme}>
