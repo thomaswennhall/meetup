@@ -17,3 +17,7 @@
 - Som arrangör vill jag kunna begränsa antalet platser på min meetup för att jag inte har plats för så många personer
 - Som arrangör vill jag kunna bestämma en tid och plats för min meetup så att folk kan planera
 - Som arrangör vill jag kunna lägga till en beskrivning på min meetup för att folk ska förstå vad den handlar om
+
+# UML use case-diagram
+
+![UML use case diagram](https://github.com/thomaswennhall/meetup/blob/main/meetups-uml.jpg?raw=true)
