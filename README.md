@@ -20,4 +20,4 @@
 
 # UML use case-diagram
 
-![UML use case diagram](https://github.com/thomaswennhall/meetup/blob/main/meetups-uml.jpg)
+![UML use case diagram](src/assets/meetups-uml.jpg)
