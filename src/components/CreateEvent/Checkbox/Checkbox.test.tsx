@@ -1,4 +1,4 @@
-import { mount, ReactWrapper, shallow } from 'enzyme'
+import { shallow } from 'enzyme'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
@@ -20,17 +20,16 @@ describe('Checkbox component', () => {
       isChecked: false,
       checkHandler: jest.fn(),
     }
-    let wrapper: ReactWrapper
+
     beforeEach(() => {
-      wrapper = mount(<Checkbox {...props} />)
+      render(<Checkbox {...props} />)
     })
 
     it('should render text from props', () => {
-      const label = wrapper.find('label')
-      expect(label.text()).toBe(props.label)
+      const label = screen.getByText(props.label)
+      expect(label).toBeInTheDocument()
     })
     it('should check box on click', () => {
-      render(<Checkbox {...props} />)
       const input = screen.getByTestId('checkbox')
       expect(input).toBeInTheDocument()
       expect(input).not.toBeChecked()

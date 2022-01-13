@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil'
 import eventsSelector from '../../Recoil/selectors/eventsSelector'
 
 import * as S from './EventList.styled'
-import { H1 } from '../../themes/typography'
+import { H1, H2 } from '../../themes/typography'
 
 import EventCard from '../EventCard'
 
@@ -12,8 +12,16 @@ const EventList: FunctionComponent = () => {
 
   return (
     <S.Wrapper data-test="event-list">
-      <H1>Meetups</H1>
-      {events.length > 0 && events.map(event => <EventCard key={event.id} event={event} />)}
+      {events.length > 0 ? (
+        <>
+          <H1>Meetups</H1>
+          {events.map(event => (
+            <EventCard key={event.id} event={event} />
+          ))}
+        </>
+      ) : (
+        <H2 data-testid="nothing-found-text">We couldn't find anything matching your search</H2>
+      )}
     </S.Wrapper>
   )
 }

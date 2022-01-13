@@ -140,7 +140,7 @@ describe('EventModal component', () => {
     })
   })
 
-  describe('Whitebox', () => {
+  describe('Attending event', () => {
     beforeEach(() => {
       const onChange = jest.fn()
       render(
@@ -195,7 +195,7 @@ describe('EventModal component', () => {
     })
   })
 
-  describe('other tests', () => {
+  describe('Other tests', () => {
     it('should create event rating on change if event does not have a rating yet', async () => {
       const onChange = jest.fn()
 

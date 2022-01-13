@@ -32,30 +32,20 @@ describe('Footer component', () => {
       const modal = wrapper.find('[data-testid="create-event-modal"]')
       expect(modal.exists()).toBeTruthy()
     })
-    // it('should show create event modal on click', () => {
-    //   const button = wrapper.find('[data-testid="open_create-button"]').first()
-    //   console.log(wrapper.debug())
-    //   button.simulate('click')
 
-    //   const form = wrapper.find('[data-testid="create_event-form"]')
-    //   expect(form.exists()).toBeTruthy()
-    // })
+    it('should show event modal on click', async () => {
+      render(
+        <ThemeProvider theme={theme}>
+          <Footer />
+        </ThemeProvider>
+      )
+
+      const button = await screen.findByTestId('open_create-button')
+      fireEvent.click(button)
+
+      const modal = screen.findByTestId('create_event-form')
+
+      expect(modal).toBeDefined()
+    })
   })
-
-  // describe('Whitebox', () => {
-  //   beforeEach(() => {})
-  //   // it('should show create event modal on click', async () => {
-  //   //   render(
-  //   //     <ThemeProvider theme={theme}>
-  //   //       <RecoilRoot>
-  //   //         <Footer />
-  //   //       </RecoilRoot>
-  //   //     </ThemeProvider>
-  //   //   )
-  //   //   const button = await screen.findByTestId('open_create-button')
-  //   //   fireEvent.click(button)
-  //   //   const form = await screen.findByTestId('create_event-form')
-  //   //   expect(form).toBeInTheDocument()
-  //   // })
-  // })
 })

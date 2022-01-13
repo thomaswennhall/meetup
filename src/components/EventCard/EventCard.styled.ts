@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { H2, H3, P } from '../../themes/typography'
+import { H1, H2, H3, P } from '../../themes/typography'
 
 export const Card = styled.article<{ hasPassed: boolean }>`
   background-color: #ffffff;
@@ -7,10 +7,20 @@ export const Card = styled.article<{ hasPassed: boolean }>`
   border-radius: 1rem;
   padding: 2rem;
   cursor: pointer;
+
+  position: relative;
 `
 
 export const Date = styled(H3)<{ hasPassed: boolean }>`
   ${props => (props.hasPassed ? `color: ${props.theme.colors.red}` : '')}
+`
+
+export const RedText = styled(H1)`
+  color: ${props => props.theme.colors.red};
+  position: absolute;
+  right: 8rem;
+  top: 5rem;
+  transform: rotate(-20deg);
 `
 
 export const Heading2 = styled(H2)<{ hasPassed: boolean }>`

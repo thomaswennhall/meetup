@@ -63,7 +63,7 @@ const EventModal: FunctionComponent<Props> = ({ eventId, toggleModal }) => {
       </H3>
       <P data-testid="event-modal-description">{event.description}</P>
       {hasPassed ? (
-        <S.RedText>Event has passed</S.RedText>
+        <S.RedText>Meetup has passed</S.RedText>
       ) : (
         <CtaButton testId="event-modal-button" text="Attend" clickHandler={attend} />
       )}

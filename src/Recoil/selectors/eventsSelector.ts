@@ -15,7 +15,7 @@ export default selector({
         searchWords.every(word => [...event.themes].join(' ').includes(word))
     )
 
-    if (searchString.length > 2 && filteredState.length) {
+    if (searchString.length > 2) {
       return sortByFutureFirst(sortByDateAndTime(filteredState))
     } else {
       return sortByFutureFirst(sortByDateAndTime(get(eventsState)))

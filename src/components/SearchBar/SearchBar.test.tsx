@@ -20,8 +20,8 @@ describe('SearchBar component', () => {
     )
   })
 
-  describe('Whitebox tests', () => {
-    let wrapper: ReactWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>
+  describe('Whitebox', () => {
+    let wrapper: ReactWrapper
     beforeEach(() => {
       wrapper = mount(
         <ThemeProvider theme={theme}>
@@ -48,7 +48,7 @@ describe('SearchBar component', () => {
       expect(input.render().val()).toBe(testInput)
     })
 
-    it('should change searchString in RecoilState on change', async () => {
+    it('should change searchString in RecoilState on change', () => {
       const onChange = jest.fn()
 
       render(
@@ -61,7 +61,7 @@ describe('SearchBar component', () => {
       )
 
       const testInput = 'hello'
-      const input = await screen.findByTestId('search-input')
+      const input = screen.getByTestId('search-input')
       fireEvent.change(input, { target: { value: testInput } })
 
       expect(onChange).toHaveBeenCalledTimes(2)

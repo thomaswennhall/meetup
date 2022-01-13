@@ -14,8 +14,8 @@ describe('Header component', () => {
     )
   })
 
-  describe('Whitebox tests', () => {
-    let wrapper: ReactWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>
+  describe('Blackbox', () => {
+    let wrapper: ReactWrapper
     beforeEach(() => {
       wrapper = mount(
         <ThemeProvider theme={theme}>

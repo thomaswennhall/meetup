@@ -5,6 +5,7 @@ import * as S from './EventCard.styled'
 
 import ThemeSticker from '../ThemeSticker'
 import EventModal from '../EventModal'
+import { getActualTime } from '../../Recoil/selectors/eventsSelector'
 
 interface Props {
   event: IEvent
@@ -16,7 +17,7 @@ const EventCard: FunctionComponent<Props> = ({ event }) => {
     setModalVisible(!modalVisible)
   }
 
-  const hasPassed: boolean = Date.now() - +event.date > 0
+  const hasPassed: boolean = Date.now() - +getActualTime(event.date, event.time) > 0
 
   return (
     <>
@@ -26,6 +27,7 @@ const EventCard: FunctionComponent<Props> = ({ event }) => {
         data-test="event-card"
         data-testid="event-card"
       >
+        {hasPassed && <S.RedText data-test="event-passed-text">Meetup has passed</S.RedText>}
         <S.Heading2 hasPassed={hasPassed} data-test="event-title">
           {event.title}
         </S.Heading2>

@@ -16,8 +16,8 @@ describe('EventList component', () => {
       </ThemeProvider>
     )
   })
-  describe('Blackbox tests', () => {
-    it('should render a list of events', () => {
+  describe('Blackbox', () => {
+    it('should render a list with correct number of events', () => {
       const wrapper = mount(
         <ThemeProvider theme={theme}>
           <RecoilRoot>

@@ -23,10 +23,10 @@ describe('CreateEvent component', () => {
     )
   })
 
-  describe('Blackbox', () => {
-    let wrapper: ReactWrapper
-
+  describe('Interactive elements', () => {
     const toggleModalMock = jest.fn()
+
+    let wrapper: ReactWrapper
     beforeEach(() => {
       wrapper = mount(
         <RecoilRoot>
@@ -164,8 +164,6 @@ describe('CreateEvent component', () => {
       const form = await screen.findByTestId('create_event-form')
       fireEvent.submit(form)
       expect(onChange).toHaveBeenCalledTimes(1)
-      //  expect(onChange).toHaveBeenCalledWith('')
-      //  expect(onChange).toHaveBeenCalledWith(testInput)
     })
 
     it('should update recoil state on create button click if all fields have a value', async () => {

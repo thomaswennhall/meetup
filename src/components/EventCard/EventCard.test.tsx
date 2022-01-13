@@ -27,7 +27,7 @@ describe('EventCard component', () => {
     )
   })
 
-  describe('blackbox tests', () => {
+  describe('Blackbox', () => {
     let wrapper: ReactWrapper
     beforeEach(() => {
       wrapper = mount(
@@ -62,6 +62,11 @@ describe('EventCard component', () => {
 
       expect(attendees.text()).toContain(`${event.attendees}/${event.maxAttendees}`)
     })
+    it('should render a text informing that the event has passed if the event has passed', () => {
+      const hasPassedText = wrapper.find('[data-test="event-passed-text"]')
+      expect(hasPassedText.exists()).toBeTruthy()
+    })
+
     it('should NOT render a themeSticker component when event does not have a theme', () => {
       const themeSticker = wrapper.find('[data-testid="theme-sticker"]')
       expect(themeSticker.exists()).toBeFalsy()
@@ -91,7 +96,6 @@ describe('EventCard component', () => {
 
     it('should have a modal component', () => {
       const modal = wrapper.find('[data-testid="event-card-modal"]').first()
-
       expect(modal.exists()).toBeTruthy()
     })
     it('should not show event modal initially', () => {
@@ -99,21 +103,18 @@ describe('EventCard component', () => {
       expect(eventModal.exists()).toBeFalsy()
     })
   })
+  it('should show event modal on click', async () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <EventCard event={event} />
+      </ThemeProvider>
+    )
 
-  describe('Whitebox', () => {
-    it('should show event modal on click', async () => {
-      render(
-        <ThemeProvider theme={theme}>
-          <EventCard event={event} />
-        </ThemeProvider>
-      )
+    const card = await screen.findByTestId('event-card')
+    fireEvent.click(card)
 
-      const card = await screen.findByTestId('event-card')
-      fireEvent.click(card)
+    const eventModal = screen.findByTestId('event-modal')
 
-      const eventModal = screen.findByTestId('event-modal')
-
-      expect(eventModal).toBeDefined()
-    })
+    expect(eventModal).toBeDefined()
   })
 })
